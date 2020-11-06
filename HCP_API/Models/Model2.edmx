@@ -1,0 +1,619 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="hcp_apiModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="dependant">
+          <Key>
+            <PropertyRef Name="national_id" />
+          </Key>
+          <Property Name="phone_number" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="30" />
+          <Property Name="gender" Type="nchar" MaxLength="10" />
+          <Property Name="national_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dob" Type="date" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="principal_number" Type="nchar" MaxLength="15" />
+          <Property Name="cover" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="dependant_fcp">
+          <Key>
+            <PropertyRef Name="national_id" />
+          </Key>
+          <Property Name="phone_number" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="30" />
+          <Property Name="gender" Type="nchar" MaxLength="10" />
+          <Property Name="national_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dob" Type="date" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="principal_number" Type="nchar" MaxLength="15" />
+          <Property Name="cover" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="help">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nchar" MaxLength="15" />
+          <Property Name="explanation" Type="nchar" MaxLength="300" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'hcp_api.dbo.help_fcp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="help_fcp">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="type" Type="nchar" MaxLength="15" />
+          <Property Name="explanation" Type="nchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="package">
+          <Key>
+            <PropertyRef Name="package_id" />
+          </Key>
+          <Property Name="package_id" Type="int" Nullable="false" />
+          <Property Name="package_desc" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="package_fcp">
+          <Key>
+            <PropertyRef Name="package_id" />
+          </Key>
+          <Property Name="package_id" Type="int" Nullable="false" />
+          <Property Name="package_desc" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="payment_type">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="int" Nullable="false" />
+          <Property Name="payment" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'hcp_api.dbo.payment_type_fcp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="payment_type_fcp">
+          <Key>
+            <PropertyRef Name="payment_id" />
+            <PropertyRef Name="payment" />
+          </Key>
+          <Property Name="payment_id" Type="int" Nullable="false" />
+          <Property Name="payment" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="registered">
+          <Key>
+            <PropertyRef Name="phone_number" />
+          </Key>
+          <Property Name="phone_number" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="national_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="dob" Type="date" />
+          <Property Name="gender" Type="nchar" MaxLength="10" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="package_id" Type="int" />
+          <Property Name="payment_id" Type="int" />
+          <Property Name="onboard_method" Type="nchar" MaxLength="10" />
+          <Property Name="church" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="registered_fcp">
+          <Key>
+            <PropertyRef Name="phone_number" />
+          </Key>
+          <Property Name="phone_number" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="national_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="dob" Type="date" />
+          <Property Name="gender" Type="nchar" MaxLength="10" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="package_id" Type="int" />
+          <Property Name="payment_id" Type="int" />
+          <Property Name="onboard_method" Type="nchar" MaxLength="10" />
+          <Property Name="church" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'hcp_api.dbo.registered_package' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="registered_package">
+          <Property Name="principal_number" Type="nchar" MaxLength="15" />
+          <Property Name="package_id" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'hcp_api.dbo.registeres_package_fcp' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="registeres_package_fcp">
+          <Property Name="principal_number" Type="nchar" MaxLength="15" />
+          <Property Name="package_id" Type="int" />
+        </EntityType>-->
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserRoles" Type="nchar" MaxLength="500" />
+          <Property Name="UserEmailID" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_dependant_fcp_registered_fcp">
+          <End Role="registered_fcp" Type="Self.registered_fcp" Multiplicity="0..1" />
+          <End Role="dependant_fcp" Type="Self.dependant_fcp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="registered_fcp">
+              <PropertyRef Name="phone_number" />
+            </Principal>
+            <Dependent Role="dependant_fcp">
+              <PropertyRef Name="principal_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dependant_registered1">
+          <End Role="registered" Type="Self.registered" Multiplicity="0..1" />
+          <End Role="dependant" Type="Self.dependant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="registered">
+              <PropertyRef Name="phone_number" />
+            </Principal>
+            <Dependent Role="dependant">
+              <PropertyRef Name="principal_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_payment_type_payment_type">
+          <End Role="payment_type" Type="Self.payment_type" Multiplicity="1" />
+          <End Role="payment_type1" Type="Self.payment_type" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="payment_type">
+              <PropertyRef Name="payment_id" />
+            </Principal>
+            <Dependent Role="payment_type1">
+              <PropertyRef Name="payment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'hcp_api.dbo.registered_package' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_registered_package_package" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'hcp_api.dbo.registered_package' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_registered_package_registered" />-->
+        <Association Name="FK_registered_payment_type">
+          <End Role="payment_type" Type="Self.payment_type" Multiplicity="0..1" />
+          <End Role="registered" Type="Self.registered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payment_type">
+              <PropertyRef Name="payment_id" />
+            </Principal>
+            <Dependent Role="registered">
+              <PropertyRef Name="payment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'hcp_api.dbo.registeres_package_fcp' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_registeres_package_fcp_package_fcp" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'hcp_api.dbo.registeres_package_fcp' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_registeres_package_fcp_registered_fcp" />-->
+        <EntityContainer Name="hcp_apiModel1StoreContainer">
+          <EntitySet Name="dependant" EntityType="Self.dependant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dependant_fcp" EntityType="Self.dependant_fcp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="help" EntityType="Self.help" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="package" EntityType="Self.package" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="package_fcp" EntityType="Self.package_fcp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payment_type" EntityType="Self.payment_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="registered" EntityType="Self.registered" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="registered_fcp" EntityType="Self.registered_fcp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="help_fcp" EntityType="Self.help_fcp" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[help_fcp].[id] AS [id], 
+[help_fcp].[type] AS [type], 
+[help_fcp].[explanation] AS [explanation]
+FROM [dbo].[help_fcp] AS [help_fcp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="payment_type_fcp" EntityType="Self.payment_type_fcp" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[payment_type_fcp].[payment_id] AS [payment_id], 
+[payment_type_fcp].[payment] AS [payment]
+FROM [dbo].[payment_type_fcp] AS [payment_type_fcp]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_dependant_fcp_registered_fcp" Association="Self.FK_dependant_fcp_registered_fcp">
+            <End Role="registered_fcp" EntitySet="registered_fcp" />
+            <End Role="dependant_fcp" EntitySet="dependant_fcp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dependant_registered1" Association="Self.FK_dependant_registered1">
+            <End Role="registered" EntitySet="registered" />
+            <End Role="dependant" EntitySet="dependant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_payment_type_payment_type" Association="Self.FK_payment_type_payment_type">
+            <End Role="payment_type" EntitySet="payment_type" />
+            <End Role="payment_type1" EntitySet="payment_type" />
+          </AssociationSet>
+          <AssociationSet Name="FK_registered_payment_type" Association="Self.FK_registered_payment_type">
+            <End Role="payment_type" EntitySet="payment_type" />
+            <End Role="registered" EntitySet="registered" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hcp_apiModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="dependant">
+          <Key>
+            <PropertyRef Name="national_id" />
+          </Key>
+          <Property Name="phone_number" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="national_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dob" Type="DateTime" Precision="0" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="principal_number" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="cover" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="registered" Relationship="Self.FK_dependant_registered1" FromRole="dependant" ToRole="registered" />
+        </EntityType>
+        <EntityType Name="dependant_fcp">
+          <Key>
+            <PropertyRef Name="national_id" />
+          </Key>
+          <Property Name="phone_number" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="national_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dob" Type="DateTime" Precision="0" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="principal_number" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="cover" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="registered_fcp" Relationship="Self.FK_dependant_fcp_registered_fcp" FromRole="dependant_fcp" ToRole="registered_fcp" />
+        </EntityType>
+        <EntityType Name="help">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="explanation" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="package">
+          <Key>
+            <PropertyRef Name="package_id" />
+          </Key>
+          <Property Name="package_id" Type="Int32" Nullable="false" />
+          <Property Name="package_desc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="package_fcp">
+          <Key>
+            <PropertyRef Name="package_id" />
+          </Key>
+          <Property Name="package_id" Type="Int32" Nullable="false" />
+          <Property Name="package_desc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="payment_type">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="Int32" Nullable="false" />
+          <Property Name="payment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="payment_type1" Relationship="Self.FK_payment_type_payment_type" FromRole="payment_type" ToRole="payment_type1" />
+          <NavigationProperty Name="payment_type2" Relationship="Self.FK_payment_type_payment_type" FromRole="payment_type1" ToRole="payment_type" />
+          <NavigationProperty Name="registereds" Relationship="Self.FK_registered_payment_type" FromRole="payment_type" ToRole="registered" />
+        </EntityType>
+        <EntityType Name="registered">
+          <Key>
+            <PropertyRef Name="phone_number" />
+          </Key>
+          <Property Name="phone_number" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="national_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dob" Type="DateTime" Precision="0" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="package_id" Type="Int32" />
+          <Property Name="payment_id" Type="Int32" />
+          <Property Name="onboard_method" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="church" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="dependants" Relationship="Self.FK_dependant_registered1" FromRole="registered" ToRole="dependant" />
+          <NavigationProperty Name="payment_type" Relationship="Self.FK_registered_payment_type" FromRole="registered" ToRole="payment_type" />
+        </EntityType>
+        <EntityType Name="registered_fcp">
+          <Key>
+            <PropertyRef Name="phone_number" />
+          </Key>
+          <Property Name="phone_number" Type="String" MaxLength="15" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="national_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dob" Type="DateTime" Precision="0" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="package_id" Type="Int32" />
+          <Property Name="payment_id" Type="Int32" />
+          <Property Name="onboard_method" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="church" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="dependant_fcp" Relationship="Self.FK_dependant_fcp_registered_fcp" FromRole="registered_fcp" ToRole="dependant_fcp" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserRoles" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="UserEmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="help_fcp">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="explanation" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="payment_type_fcp">
+          <Key>
+            <PropertyRef Name="payment_id" />
+            <PropertyRef Name="payment" />
+          </Key>
+          <Property Name="payment_id" Type="Int32" Nullable="false" />
+          <Property Name="payment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dependant_registered1">
+          <End Role="registered" Type="Self.registered" Multiplicity="0..1" />
+          <End Role="dependant" Type="Self.dependant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="registered">
+              <PropertyRef Name="phone_number" />
+            </Principal>
+            <Dependent Role="dependant">
+              <PropertyRef Name="principal_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dependant_fcp_registered_fcp">
+          <End Role="registered_fcp" Type="Self.registered_fcp" Multiplicity="0..1" />
+          <End Role="dependant_fcp" Type="Self.dependant_fcp" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="registered_fcp">
+              <PropertyRef Name="phone_number" />
+            </Principal>
+            <Dependent Role="dependant_fcp">
+              <PropertyRef Name="principal_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_payment_type_payment_type">
+          <End Role="payment_type" Type="Self.payment_type" Multiplicity="1" />
+          <End Role="payment_type1" Type="Self.payment_type" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="payment_type">
+              <PropertyRef Name="payment_id" />
+            </Principal>
+            <Dependent Role="payment_type1">
+              <PropertyRef Name="payment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_registered_payment_type">
+          <End Role="payment_type" Type="Self.payment_type" Multiplicity="0..1" />
+          <End Role="registered" Type="Self.registered" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payment_type">
+              <PropertyRef Name="payment_id" />
+            </Principal>
+            <Dependent Role="registered">
+              <PropertyRef Name="payment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="hcp_apiEntities6" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="dependants" EntityType="Self.dependant" />
+          <EntitySet Name="dependant_fcp" EntityType="Self.dependant_fcp" />
+          <EntitySet Name="helps" EntityType="Self.help" />
+          <EntitySet Name="packages" EntityType="Self.package" />
+          <EntitySet Name="package_fcp" EntityType="Self.package_fcp" />
+          <EntitySet Name="payment_type" EntityType="Self.payment_type" />
+          <EntitySet Name="registereds" EntityType="Self.registered" />
+          <EntitySet Name="registered_fcp" EntityType="Self.registered_fcp" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="UserMasters" EntityType="Self.UserMaster" />
+          <EntitySet Name="help_fcp" EntityType="Self.help_fcp" />
+          <EntitySet Name="payment_type_fcp" EntityType="Self.payment_type_fcp" />
+          <AssociationSet Name="FK_dependant_registered1" Association="Self.FK_dependant_registered1">
+            <End Role="registered" EntitySet="registereds" />
+            <End Role="dependant" EntitySet="dependants" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dependant_fcp_registered_fcp" Association="Self.FK_dependant_fcp_registered_fcp">
+            <End Role="registered_fcp" EntitySet="registered_fcp" />
+            <End Role="dependant_fcp" EntitySet="dependant_fcp" />
+          </AssociationSet>
+          <AssociationSet Name="FK_payment_type_payment_type" Association="Self.FK_payment_type_payment_type">
+            <End Role="payment_type" EntitySet="payment_type" />
+            <End Role="payment_type1" EntitySet="payment_type" />
+          </AssociationSet>
+          <AssociationSet Name="FK_registered_payment_type" Association="Self.FK_registered_payment_type">
+            <End Role="payment_type" EntitySet="payment_type" />
+            <End Role="registered" EntitySet="registereds" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hcp_apiModel1StoreContainer" CdmEntityContainer="hcp_apiEntities6">
+          <EntitySetMapping Name="dependants">
+            <EntityTypeMapping TypeName="hcp_apiModel1.dependant">
+              <MappingFragment StoreEntitySet="dependant">
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="national_id" ColumnName="national_id" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="principal_number" ColumnName="principal_number" />
+                <ScalarProperty Name="cover" ColumnName="cover" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dependant_fcp">
+            <EntityTypeMapping TypeName="hcp_apiModel1.dependant_fcp">
+              <MappingFragment StoreEntitySet="dependant_fcp">
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="national_id" ColumnName="national_id" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="principal_number" ColumnName="principal_number" />
+                <ScalarProperty Name="cover" ColumnName="cover" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="helps">
+            <EntityTypeMapping TypeName="hcp_apiModel1.help">
+              <MappingFragment StoreEntitySet="help">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="explanation" ColumnName="explanation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="packages">
+            <EntityTypeMapping TypeName="hcp_apiModel1.package">
+              <MappingFragment StoreEntitySet="package">
+                <ScalarProperty Name="package_id" ColumnName="package_id" />
+                <ScalarProperty Name="package_desc" ColumnName="package_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="package_fcp">
+            <EntityTypeMapping TypeName="hcp_apiModel1.package_fcp">
+              <MappingFragment StoreEntitySet="package_fcp">
+                <ScalarProperty Name="package_id" ColumnName="package_id" />
+                <ScalarProperty Name="package_desc" ColumnName="package_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payment_type">
+            <EntityTypeMapping TypeName="hcp_apiModel1.payment_type">
+              <MappingFragment StoreEntitySet="payment_type">
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+                <ScalarProperty Name="payment" ColumnName="payment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="registereds">
+            <EntityTypeMapping TypeName="hcp_apiModel1.registered">
+              <MappingFragment StoreEntitySet="registered">
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="national_id" ColumnName="national_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="package_id" ColumnName="package_id" />
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+                <ScalarProperty Name="onboard_method" ColumnName="onboard_method" />
+                <ScalarProperty Name="church" ColumnName="church" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="registered_fcp">
+            <EntityTypeMapping TypeName="hcp_apiModel1.registered_fcp">
+              <MappingFragment StoreEntitySet="registered_fcp">
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="national_id" ColumnName="national_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="package_id" ColumnName="package_id" />
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+                <ScalarProperty Name="onboard_method" ColumnName="onboard_method" />
+                <ScalarProperty Name="church" ColumnName="church" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="hcp_apiModel1.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMasters">
+            <EntityTypeMapping TypeName="hcp_apiModel1.UserMaster">
+              <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserRoles" ColumnName="UserRoles" />
+                <ScalarProperty Name="UserEmailID" ColumnName="UserEmailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="help_fcp">
+            <EntityTypeMapping TypeName="hcp_apiModel1.help_fcp">
+              <MappingFragment StoreEntitySet="help_fcp">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="explanation" ColumnName="explanation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payment_type_fcp">
+            <EntityTypeMapping TypeName="hcp_apiModel1.payment_type_fcp">
+              <MappingFragment StoreEntitySet="payment_type_fcp">
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+                <ScalarProperty Name="payment" ColumnName="payment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

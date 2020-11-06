@@ -8,7 +8,9 @@ namespace HCP_API.Models
     public class UserMasterRepository:IDisposable
     {
         // SECURITY_DBEntities it is your context class
-    hcp_apiEntities4 context = new hcp_apiEntities4();
+      
+      hcp_apiEntities6 context = new hcp_apiEntities6();
+
         //This method is used to check and validate the user credentials
         public UserMaster ValidateUser(string username, string password)
         {

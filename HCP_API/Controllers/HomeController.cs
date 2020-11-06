@@ -8,7 +8,7 @@ namespace HCP_API.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult FIRST()
         {
             ViewBag.Title = "Home Page";
 

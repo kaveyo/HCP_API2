@@ -13,10 +13,10 @@ namespace HCP_API.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class hcp_apiEntities4 : DbContext
+    public partial class hcp_apiEntities6 : DbContext
     {
-        public hcp_apiEntities4()
-            : base("name=hcp_apiEntities4")
+        public hcp_apiEntities6()
+            : base("name=hcp_apiEntities6")
         {
         }
     
@@ -25,6 +25,17 @@ namespace HCP_API.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<dependant> dependants { get; set; }
+        public DbSet<dependant_fcp> dependant_fcp { get; set; }
+        public DbSet<help> helps { get; set; }
+        public DbSet<package> packages { get; set; }
+        public DbSet<package_fcp> package_fcp { get; set; }
+        public DbSet<payment_type> payment_type { get; set; }
+        public DbSet<registered> registereds { get; set; }
+        public DbSet<registered_fcp> registered_fcp { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<UserMaster> UserMasters { get; set; }
+        public DbSet<help_fcp> help_fcp { get; set; }
+        public DbSet<payment_type_fcp> payment_type_fcp { get; set; }
     }
 }
